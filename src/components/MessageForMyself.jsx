@@ -137,8 +137,28 @@ export default function MessageForMyself({ onClose }) {
         }
         @media (max-width: 480px) {
           .lc-msg-overlay { padding: 0 !important; }
-          .lc-msg-card { padding: 32px 20px 24px !important; borderRadius: 0 !important; maxWidth: 100% !important; maxHeight: 100vh !important; min-height: 100vh; }
-          .lc-msg-textarea { fontSize: 15px !important; }
+          .lc-msg-card {
+            padding: 28px 18px 24px !important;
+            border-radius: 0 !important;
+            max-width: 100% !important;
+            max-height: 100vh !important;
+            min-height: 100vh;
+            border-left: none !important;
+            border-right: none !important;
+          }
+          .lc-msg-textarea { font-size: 15px !important; min-height: 160px !important; padding: 16px 18px !important; }
+          .lc-msg-headline { font-size: 21px !important; }
+          .lc-msg-sub { font-size: 13px !important; }
+          .lc-msg-nuance { padding: 9px 14px !important; font-size: 12px !important; }
+          .lc-msg-close { padding: 9px 16px !important; font-size: 12px !important; top: 14px !important; left: 14px !important; }
+          .lc-msg-create { padding: 13px 30px !important; font-size: 14px !important; }
+          .lc-msg-sec { padding: 9px 16px !important; font-size: 12px !important; }
+          .lc-msg-lettersig { font-size: 12px !important; }
+        }
+        @media (max-width: 360px) {
+          .lc-msg-card { padding: 24px 14px 20px !important; }
+          .lc-msg-headline { font-size: 19px !important; }
+          .lc-msg-nuance { padding: 8px 12px !important; font-size: 11px !important; gap: 6px !important; }
         }
       `}</style>
 
@@ -182,6 +202,7 @@ export default function MessageForMyself({ onClose }) {
           <button
             onClick={onClose}
             aria-label="Tutup"
+            className="lc-msg-close"
             style={{
               position: "absolute",
               top: 16,
@@ -226,7 +247,7 @@ export default function MessageForMyself({ onClose }) {
               </div>
 
               {/* Headline */}
-              <h2 className="fraunces" style={{
+              <h2 className="fraunces lc-msg-headline" style={{
                 fontSize: "clamp(22px,5vw,30px)",
                 fontWeight: 400,
                 lineHeight: 1.2,
@@ -239,7 +260,7 @@ export default function MessageForMyself({ onClose }) {
               </h2>
 
               {/* Subheadline */}
-              <p style={{
+              <p className="lc-msg-sub" style={{
                 fontSize: "clamp(13px,2vw,15px)",
                 color: "#8B8780",
                 textAlign: "center",
@@ -272,6 +293,7 @@ export default function MessageForMyself({ onClose }) {
                     <button
                       key={n.key}
                       onClick={() => setNuance(n.key)}
+                      className="lc-msg-nuance"
                       style={{
                         ...nuanceBtnBase,
                         ...(isActive ? nuanceBtnActive : {}),
@@ -366,6 +388,7 @@ export default function MessageForMyself({ onClose }) {
                 {hasSaved && (
                   <button
                     onClick={() => { setPhase("letter"); }}
+                    className="lc-msg-sec"
                     style={{
                       ...secondaryBtnStyle,
                       color: "#C8A96E",
@@ -381,6 +404,7 @@ export default function MessageForMyself({ onClose }) {
                 {message.trim() && (
                   <button
                     onClick={handleDelete}
+                    className="lc-msg-sec"
                     style={secondaryBtnStyle}
                     onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(255,100,100,0.3)"; e.currentTarget.style.color = "#E08080"; }}
                     onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.color = "#8B8780"; }}
@@ -395,6 +419,7 @@ export default function MessageForMyself({ onClose }) {
                 <button
                   onClick={handleCreate}
                   disabled={!message.trim()}
+                  className="lc-msg-create"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -476,7 +501,7 @@ export default function MessageForMyself({ onClose }) {
                   paddingTop: 20,
                   borderTop: "1px solid rgba(200,169,110,0.15)",
                 }}>
-                  <p style={{
+                  <p className="lc-msg-lettersig" style={{
                     fontSize: 13,
                     color: "#8B8780",
                     fontStyle: "italic",
@@ -504,6 +529,7 @@ export default function MessageForMyself({ onClose }) {
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 12, flexWrap: "wrap" }}>
                 <button
                   onClick={() => setPhase("write")}
+                  className="lc-msg-sec"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",
@@ -526,6 +552,7 @@ export default function MessageForMyself({ onClose }) {
                 </button>
                 <button
                   onClick={onClose}
+                  className="lc-msg-sec"
                   style={{
                     display: "inline-flex",
                     alignItems: "center",

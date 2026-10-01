@@ -44,8 +44,32 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
         }
         @media (max-width: 480px) {
           .lc-detail-overlay { padding: 0 !important; }
-          .lc-detail-card { padding: 32px 20px 24px !important; borderRadius: 0 !important; maxWidth: 100% !important; maxHeight: 100vh !important; min-height: 100vh; }
-          .lc-detail-close { padding: "10px 18px" !important; fontSize: 13px !important; top: 16px !important; left: 16px !important; }
+          .lc-detail-card {
+            padding: 28px 18px 24px !important;
+            border-radius: 0 !important;
+            max-width: 100% !important;
+            max-height: 100vh !important;
+            min-height: 100vh;
+            border-left: none !important;
+            border-right: none !important;
+          }
+          .lc-detail-close { padding: 9px 16px !important; font-size: 12px !important; top: 14px !important; left: 14px !important; }
+          .lc-detail-icon { width: 64px !important; height: 64px !important; margin-top: 4px !important; margin-bottom: 16px !important; }
+          .lc-detail-icon span { font-size: 30px !important; }
+          .lc-detail-title { font-size: 24px !important; }
+          .lc-detail-tagline { font-size: 15px !important; }
+          .lc-detail-pill { padding: 4px 12px !important; font-size: 10px !important; }
+          .lc-detail-body { font-size: 13px !important; line-height: 1.6 !important; }
+          .lc-detail-point { font-size: 13px !important; line-height: 1.5 !important; }
+          .lc-detail-section { margin-bottom: 18px !important; }
+          .lc-detail-section-title { margin-bottom: 8px !important; }
+          .lc-detail-cta { padding: 13px 30px !important; font-size: 14px !important; }
+        }
+        @media (max-width: 360px) {
+          .lc-detail-card { padding: 24px 14px 20px !important; }
+          .lc-detail-title { font-size: 21px !important; }
+          .lc-detail-tagline { font-size: 14px !important; }
+          .lc-detail-pills { gap: 6px !important; }
         }
       `}</style>
 
@@ -128,7 +152,7 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
             alignItems: "center",
             justifyContent: "center",
             overflow: "hidden",
-          }}>
+          }} className="lc-detail-icon">
             <div style={{
               position: "absolute",
               inset: 0,
@@ -139,13 +163,13 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
               position: "relative",
               fontSize: 38,
               filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.4))",
-            }}>
+            }} className="lc-detail-icon-span">
               {meta.icon}
             </span>
           </div>
 
           {/* Title */}
-          <h2 className="fraunces" style={{
+          <h2 className="fraunces lc-detail-title" style={{
             fontSize: "clamp(26px,6vw,34px)",
             fontWeight: 400,
             lineHeight: 1.15,
@@ -171,7 +195,7 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
           )}
 
           {/* Tagline */}
-          <p className="fraunces" style={{
+          <p className="fraunces lc-detail-tagline" style={{
             textAlign: "center",
             fontSize: 16,
             fontStyle: "italic",
@@ -192,7 +216,7 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
           }} />
 
           {/* Meta pills */}
-          <div style={{
+          <div className="lc-detail-pills" style={{
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "center",
@@ -200,7 +224,7 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
             marginBottom: 28,
           }}>
             {metaPills.map((pill) => (
-              <span key={pill} style={{
+              <span key={pill} className="lc-detail-pill" style={{
                 padding: "5px 14px",
                 borderRadius: 100,
                 fontSize: 11,
@@ -217,7 +241,7 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
 
           {/* About section */}
           <Section title={detail.aboutTitle}>
-            <p style={paragraphStyle}>{detail.about}</p>
+            <p style={paragraphStyle} className="lc-detail-body">{detail.about}</p>
           </Section>
 
           {/* Preview points */}
@@ -245,7 +269,7 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
                     fontWeight: 700,
                     marginTop: 2,
                   }}>✓</span>
-                  <span style={{
+                  <span className="lc-detail-point" style={{
                     fontSize: 14,
                     color: "#C4C0B8",
                     lineHeight: 1.55,
@@ -264,7 +288,7 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
               border: "1px solid rgba(200,169,110,0.2)",
               borderLeft: "3px solid #C8A96E",
             }}>
-              <p style={{
+              <p className="lc-detail-body" style={{
                 fontSize: 14,
                 color: "#E8D5A3",
                 lineHeight: 1.6,
@@ -281,6 +305,7 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
             <button
               onClick={handleStart}
               disabled={!url}
+              className="lc-detail-cta"
               style={{
                 display: "inline-flex",
                 alignItems: "center",

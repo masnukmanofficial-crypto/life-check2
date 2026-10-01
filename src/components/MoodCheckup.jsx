@@ -283,6 +283,7 @@ export default function MoodCheckup({ onClose, onPick }) {
       <button
         key={key}
         style={pickBtnStyle}
+        className="lc-mood-pick"
         onMouseEnter={(e) => {
           e.currentTarget.style.borderColor = "rgba(200,169,110,0.45)";
           e.currentTarget.style.background = "rgba(200,169,110,0.12)";
@@ -293,15 +294,15 @@ export default function MoodCheckup({ onClose, onPick }) {
         }}
         onClick={() => onPick && onPick(key)}
       >
-        <span style={{ fontSize: 24 }}>{meta.icon}</span>
+        <span style={{ fontSize: 24 }} className="lc-mood-pick-icon">{meta.icon}</span>
         <span style={{ flex: 1 }}>
           <span
-            className="fraunces"
+            className="fraunces lc-mood-pick-title"
             style={{ display: "block", fontSize: 15, color: "#F5F0E8", marginBottom: 2 }}
           >
             {item.title}
           </span>
-          <span style={{ fontSize: 11, color: "#8B8780", lineHeight: 1.4 }}>
+          <span className="lc-mood-pick-desc" style={{ fontSize: 11, color: "#8B8780", lineHeight: 1.4 }}>
             {item.description}
           </span>
         </span>
@@ -319,9 +320,34 @@ export default function MoodCheckup({ onClose, onPick }) {
         @keyframes moodPulse { 0%,100%{ opacity:.4 } 50%{ opacity:.9 } }
         @media (max-width: 480px) {
           .lc-mood-overlay { padding: 0 !important; }
-          .lc-mood-card { padding: 28px 20px !important; borderRadius: 0 !important; width: 100% !important; maxHeight: 100vh !important; }
-          .lc-mood-close { width: 44px !important; height: 44px !important; fontSize: 18px !important; top: 16px !important; right: 16px !important; }
-          .lc-mood-video { width: 100% !important; }
+          .lc-mood-card {
+            padding: 26px 18px 24px !important;
+            border-radius: 0 !important;
+            width: 100% !important;
+            max-height: 100vh !important;
+            min-height: 100vh;
+            border-left: none !important;
+            border-right: none !important;
+          }
+          .lc-mood-close { width: 44px !important; height: 44px !important; font-size: 18px !important; top: 14px !important; right: 14px !important; }
+          .lc-mood-video { width: min(200px, 82vw) !important; margin-bottom: 16px !important; }
+          .lc-mood-headline { font-size: 20px !important; }
+          .lc-mood-body { font-size: 13px !important; line-height: 1.6 !important; }
+          .lc-mood-result-emoji { font-size: 44px !important; margin-bottom: 8px !important; }
+          .lc-mood-idle-emoji { font-size: 34px !important; margin-bottom: 12px !important; }
+          .lc-mood-primary { padding: 13px 26px !important; font-size: 13px !important; }
+          .lc-mood-secondary { padding: 11px 22px !important; font-size: 12px !important; }
+          .lc-mood-pick { padding: 12px 14px !important; gap: 10px !important; }
+          .lc-mood-pick-icon { font-size: 22px !important; }
+          .lc-mood-pick-title { font-size: 14px !important; }
+          .lc-mood-pick-desc { font-size: 10px !important; }
+          .lc-mood-eyebrow { margin-bottom: 14px !important; }
+          .lc-mood-disclaimer { font-size: 10px !important; }
+        }
+        @media (max-width: 360px) {
+          .lc-mood-card { padding: 22px 14px 20px !important; }
+          .lc-mood-headline { font-size: 18px !important; }
+          .lc-mood-video { width: min(170px, 80vw) !important; }
         }
       `}</style>
 
@@ -334,34 +360,35 @@ export default function MoodCheckup({ onClose, onPick }) {
           {/* IDLE */}
           {phase === "idle" && (
             <div>
-              <div style={{ fontSize: 40, marginBottom: 14 }}>🪞</div>
+              <div className="lc-mood-idle-emoji" style={{ fontSize: 40, marginBottom: 14 }}>🪞</div>
               <div style={{
                 display: "inline-flex", alignItems: "center", gap: 8,
                 background: "rgba(200,169,110,0.1)", border: "1px solid rgba(200,169,110,0.2)",
                 borderRadius: 100, padding: "5px 14px", fontSize: 10, fontWeight: 700,
                 letterSpacing: ".1em", color: "#C8A96E", textTransform: "uppercase", marginBottom: 18,
-              }}>
+              }} className="lc-mood-eyebrow">
                 Mood Check-In
               </div>
-              <h3 className="fraunces" style={{ fontSize: 24, fontWeight: 400, color: "#F5F0E8", marginBottom: 10, lineHeight: 1.2 }}>
+              <h3 className="fraunces lc-mood-headline" style={{ fontSize: 24, fontWeight: 400, color: "#F5F0E8", marginBottom: 10, lineHeight: 1.2 }}>
                 Mau cek ekspresi dulu?
               </h3>
-              <p style={{ fontSize: 14, color: "#8B8780", lineHeight: 1.6, marginBottom: 8, maxWidth: 320, margin: "0 auto 8px" }}>
+              <p className="lc-mood-body" style={{ fontSize: 14, color: "#8B8780", lineHeight: 1.6, marginBottom: 8, maxWidth: 320, margin: "0 auto 8px" }}>
                 Buka kamera sebentar, biar kita lihat hari kamu lagi gimana. Lalu kita kasih rekomendasi asesmen yang pas — dengan cara yang seru, bukan serius.
               </p>
-              <p style={{ fontSize: 11, color: "#8B8780", marginBottom: 24, fontStyle: "italic" }}>
+              <p className="lc-mood-disclaimer" style={{ fontSize: 11, color: "#8B8780", marginBottom: 24, fontStyle: "italic" }}>
                 {DISCLAIMER}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "center" }}>
                 <button
                   style={primaryBtnStyle}
+                  className="lc-mood-primary"
                   onClick={startCamera}
                   onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(200,169,110,0.35)"; }}
                   onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(200,169,110,0.25)"; }}
                 >
                   📷 Cek Ekspresiku
                 </button>
-                <button style={secondaryBtnStyle} onClick={() => onClose && onClose()}>
+                <button style={secondaryBtnStyle} className="lc-mood-secondary" onClick={() => onClose && onClose()}>
                   Nanti saja, langsung pilih asesmen
                 </button>
               </div>
@@ -416,7 +443,7 @@ export default function MoodCheckup({ onClose, onPick }) {
               <p style={{ fontSize: 13, color: "#8B8780", marginBottom: 20 }}>
                 Lagi ngelihat ekspresimu... tetap santai ya 😊
               </p>
-              <button style={primaryBtnStyle} onClick={detect}>
+              <button style={primaryBtnStyle} className="lc-mood-primary" onClick={detect}>
                 Lihat Hasilnya ✨
               </button>
             </div>
@@ -425,11 +452,11 @@ export default function MoodCheckup({ onClose, onPick }) {
           {/* RESULT */}
           {phase === "result" && moodData && (
             <div style={{ animation: "moodPop 0.4s ease" }}>
-              <div style={{ fontSize: 56, marginBottom: 10 }}>{moodData.emoji}</div>
-              <h3 className="fraunces" style={{ fontSize: 22, fontWeight: 400, color: "#F5F0E8", marginBottom: 12 }}>
+              <div className="lc-mood-result-emoji" style={{ fontSize: 56, marginBottom: 10 }}>{moodData.emoji}</div>
+              <h3 className="fraunces lc-mood-headline" style={{ fontSize: 22, fontWeight: 400, color: "#F5F0E8", marginBottom: 12 }}>
                 {moodData.title}
               </h3>
-              <p style={{ fontSize: 14, color: "#C8D0DC", lineHeight: 1.6, marginBottom: 22, maxWidth: 340, margin: "0 auto 22px" }}>
+              <p className="lc-mood-body" style={{ fontSize: 14, color: "#C8D0DC", lineHeight: 1.6, marginBottom: 22, maxWidth: 340, margin: "0 auto 22px" }}>
                 {moodData.message}
               </p>
 
@@ -437,10 +464,10 @@ export default function MoodCheckup({ onClose, onPick }) {
                 {moodData.picks.map(renderPick)}
               </div>
 
-              <p style={{ fontSize: 11, color: "#8B8780", fontStyle: "italic", marginBottom: 16 }}>
+              <p className="lc-mood-disclaimer" style={{ fontSize: 11, color: "#8B8780", fontStyle: "italic", marginBottom: 16 }}>
                 {DISCLAIMER}
               </p>
-              <button style={secondaryBtnStyle} onClick={() => onClose && onClose()}>
+              <button style={secondaryBtnStyle} className="lc-mood-secondary" onClick={() => onClose && onClose()}>
                 Tutup & pilih sendiri
               </button>
             </div>
@@ -450,17 +477,17 @@ export default function MoodCheckup({ onClose, onPick }) {
           {phase === "error" && (
             <div>
               <div style={{ fontSize: 40, marginBottom: 14 }}>🤗</div>
-              <h3 className="fraunces" style={{ fontSize: 22, fontWeight: 400, color: "#F5F0E8", marginBottom: 12 }}>
+              <h3 className="fraunces lc-mood-headline" style={{ fontSize: 22, fontWeight: 400, color: "#F5F0E8", marginBottom: 12 }}>
                 Gak apa-apa, kita skip!
               </h3>
-              <p style={{ fontSize: 14, color: "#8B8780", lineHeight: 1.6, marginBottom: 24, maxWidth: 320, margin: "0 auto 24px" }}>
+              <p className="lc-mood-body" style={{ fontSize: 14, color: "#8B8780", lineHeight: 1.6, marginBottom: 24, maxWidth: 320, margin: "0 auto 24px" }}>
                 {error || "Kamera tidak tersedia. Tenang, kamu tetap bisa langsung memilih asesmen yang kamu suka."}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "center" }}>
-                <button style={primaryBtnStyle} onClick={() => onClose && onClose()}>
+                <button style={primaryBtnStyle} className="lc-mood-primary" onClick={() => onClose && onClose()}>
                   Lanjut ke Asesmen →
                 </button>
-                <button style={secondaryBtnStyle} onClick={startCamera}>
+                <button style={secondaryBtnStyle} className="lc-mood-secondary" onClick={startCamera}>
                   Coba kamera lagi
                 </button>
               </div>

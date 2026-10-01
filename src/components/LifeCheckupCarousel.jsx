@@ -116,8 +116,16 @@ export default function LifeCheckupCarousel({ focusKey, onCardOpen }) {
       <style>{`
         @media (max-width: 480px) {
           .lc-carousel-stage { width: min(220px, 62vw) !important; padding-bottom: calc(min(220px, 62vw) * 4 / 3) !important; }
-          .lc-carousel-arrow { width: 34px !important; height: 34px !important; font-size: 15px !important; }
-          .lc-carousel-row { gap: 10px !important; padding: 0 12px !important; }
+          .lc-carousel-arrow { width: 38px !important; height: 38px !important; font-size: 16px !important; }
+          .lc-carousel-row { gap: 8px !important; padding: 0 10px !important; }
+          .lc-carousel-dots { gap: 6px !important; margin-top: 22px !important; }
+          .lc-carousel-dot { height: 4px !important; }
+          .lc-carousel-hint { font-size: 10px !important; margin-top: 10px !important; }
+        }
+        @media (max-width: 360px) {
+          .lc-carousel-stage { width: min(190px, 60vw) !important; padding-bottom: calc(min(190px, 60vw) * 4 / 3) !important; }
+          .lc-carousel-arrow { width: 34px !important; height: 34px !important; font-size: 14px !important; }
+          .lc-carousel-row { gap: 6px !important; padding: 0 8px !important; }
         }
       `}</style>
       <p style={{
@@ -214,7 +222,7 @@ export default function LifeCheckupCarousel({ focusKey, onCardOpen }) {
       </div>
 
       {/* Dots */}
-      <div style={{
+      <div className="lc-carousel-dots" style={{
         display: "flex",
         justifyContent: "center",
         gap: 5,
@@ -224,6 +232,7 @@ export default function LifeCheckupCarousel({ focusKey, onCardOpen }) {
           <div
             key={i}
             onClick={() => goTo(i)}
+            className="lc-carousel-dot"
             style={{
               width: i === activeIndex ? 32 : 20,
               height: 3,
@@ -237,7 +246,7 @@ export default function LifeCheckupCarousel({ focusKey, onCardOpen }) {
       </div>
 
       {/* Hint text */}
-      <p style={{
+      <p className="lc-carousel-hint" style={{
         textAlign: "center",
         fontSize: 11,
         color: "#8B8780",
