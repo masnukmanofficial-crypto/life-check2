@@ -71,6 +71,10 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
           .lc-detail-tagline { font-size: 14px !important; }
           .lc-detail-pills { gap: 6px !important; }
         }
+        @media (max-device-width: 700px), (pointer: coarse) {
+          .lc-detail-overlay { width: 100vw !important; max-width: 100vw !important; left: 0 !important; right: auto !important; padding: 0 !important; justify-content: flex-start !important; }
+          .lc-detail-card { width: 100vw !important; max-width: 100vw !important; min-height: 100dvh !important; max-height: 100dvh !important; margin: 0 !important; border-radius: 0 !important; border-left: 0 !important; border-right: 0 !important; }
+        }
       `}</style>
 
       {/* Overlay */}
@@ -87,6 +91,8 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          width: "100vw",
+          maxWidth: "100vw",
           padding: "24px",
           overflowY: "auto",
         }}
@@ -97,8 +103,8 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
           className="lc-detail-card"
           style={{
             position: "relative",
-            width: "100%",
-            maxWidth: 480,
+            width: "min(480px, calc(100vw - 32px))",
+            maxWidth: "calc(100vw - 32px)",
             maxHeight: "88vh",
             overflowY: "auto",
             borderRadius: 24,

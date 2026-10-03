@@ -160,6 +160,10 @@ export default function MessageForMyself({ onClose }) {
           .lc-msg-headline { font-size: 19px !important; }
           .lc-msg-nuance { padding: 8px 12px !important; font-size: 11px !important; gap: 6px !important; }
         }
+        @media (max-device-width: 700px), (pointer: coarse) {
+          .lc-msg-overlay { width: 100% !important; max-width: 100% !important; left: 0 !important; right: 0 !important; padding: 0 !important; }
+          .lc-msg-card { width: 100% !important; max-width: 100% !important; min-height: 100dvh !important; max-height: 100dvh !important; border-radius: 0 !important; border-left: 0 !important; border-right: 0 !important; }
+        }
       `}</style>
 
       <div
@@ -175,6 +179,8 @@ export default function MessageForMyself({ onClose }) {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          width: "100vw",
+          maxWidth: "100vw",
           padding: "24px",
           overflowY: "auto",
         }}
@@ -184,8 +190,8 @@ export default function MessageForMyself({ onClose }) {
           className="lc-msg-card"
           style={{
             position: "relative",
-            width: "100%",
-            maxWidth: 520,
+            width: "min(520px, calc(100vw - 32px))",
+            maxWidth: "calc(100vw - 32px)",
             maxHeight: "88vh",
             overflowY: "auto",
             borderRadius: 24,
