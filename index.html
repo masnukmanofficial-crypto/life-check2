@@ -2,25 +2,15 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <script>
       (function () {
         var viewportWidth = window.innerWidth;
         var deviceWidth = window.screen && window.screen.width;
-        var visualScale = window.visualViewport && window.visualViewport.scale || 1;
         var mobileAgent = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        var touchDevice = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-        var isTouchDevice = touchDevice || mobileAgent;
-        var correction = 1;
-        if (isTouchDevice && viewportWidth > 700) {
-          var viewportMeta = document.querySelector('meta[name="viewport"]');
-          if (viewportMeta && deviceWidth) viewportMeta.setAttribute('content', 'width=' + deviceWidth + ', initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover');
-          correction = 0.5;
-        } else if (isTouchDevice && visualScale > 1.1) {
-          correction = 1 / visualScale;
-        }
-        if (isTouchDevice && deviceWidth && deviceWidth <= 800) document.documentElement.classList.add('mobile-layout');
-        if (correction < 1) document.documentElement.style.zoom = String(correction);
+        var touchDevice = navigator.maxTouchPoints > 0;
+        var compactDevice = deviceWidth && (deviceWidth < 1000 || viewportWidth > deviceWidth * 1.2);
+        if (mobileAgent || touchDevice || compactDevice) document.documentElement.classList.add('mobile-layout');
       })();
     </script>
     <title>Life Check-Up — Sekolah Kehidupan</title>

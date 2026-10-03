@@ -317,6 +317,8 @@ export default function MoodCheckup({ onClose, onPick }) {
   return (
     <>
       <style>{`
+        .mobile-layout .lc-mood-overlay { justify-content: flex-start !important; align-items: flex-start !important; width: 100vw !important; max-width: 100vw !important; padding: 0 !important; }
+        .mobile-layout .lc-mood-card { width: calc(100vw - 24px) !important; max-width: 440px !important; margin: 0 !important; }
         @keyframes moodFadeIn { from { opacity: 0 } to { opacity: 1 } }
         @keyframes moodPop { from { opacity:0; transform: scale(.85) } to { opacity:1; transform: scale(1) } }
         @keyframes moodScan { 0%{ transform: translateY(-100%) } 100%{ transform: translateY(100%) } }
@@ -352,7 +354,7 @@ export default function MoodCheckup({ onClose, onPick }) {
           .lc-mood-headline { font-size: 18px !important; }
           .lc-mood-video { width: min(170px, 80vw) !important; }
         }
-        @media (max-device-width: 700px), (pointer: coarse) {
+        @media (max-device-width: 1200px), (pointer: coarse) {
           .lc-mood-overlay { width: 100vw !important; max-width: 100vw !important; left: 0 !important; right: auto !important; padding: 0 !important; justify-content: flex-start !important; }
           .lc-mood-card { width: 100vw !important; max-width: 100vw !important; min-height: 100dvh !important; max-height: 100dvh !important; margin: 0 !important; border-radius: 0 !important; border-left: 0 !important; border-right: 0 !important; }
         }

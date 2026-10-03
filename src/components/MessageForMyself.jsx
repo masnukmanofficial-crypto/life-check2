@@ -121,6 +121,8 @@ export default function MessageForMyself({ onClose }) {
   return (
     <>
       <style>{`
+        .mobile-layout .lc-msg-overlay { justify-content: flex-start !important; align-items: flex-start !important; width: 100vw !important; max-width: 100vw !important; padding: 0 !important; }
+        .mobile-layout .lc-msg-card { width: calc(100vw - 24px) !important; max-width: 520px !important; margin: 0 !important; }
         @keyframes msgOverlayIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes msgCardIn {
           from { opacity: 0; transform: translateY(24px) scale(0.96); }
@@ -160,7 +162,7 @@ export default function MessageForMyself({ onClose }) {
           .lc-msg-headline { font-size: 19px !important; }
           .lc-msg-nuance { padding: 8px 12px !important; font-size: 11px !important; gap: 6px !important; }
         }
-        @media (max-device-width: 700px), (pointer: coarse) {
+        @media (max-device-width: 1200px), (pointer: coarse) {
           .lc-msg-overlay { width: 100% !important; max-width: 100% !important; left: 0 !important; right: 0 !important; padding: 0 !important; }
           .lc-msg-card { width: 100% !important; max-width: 100% !important; min-height: 100dvh !important; max-height: 100dvh !important; border-radius: 0 !important; border-left: 0 !important; border-right: 0 !important; }
         }
