@@ -101,9 +101,6 @@ export default function LifeCheckup() {
         * { box-sizing: border-box; margin: 0; padding: 0; }
         html, body, #root { width: 100%; max-width: 100%; overflow-x: hidden; }
         body { background: var(--bg); color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        @media screen and (min-width: 700px) and (max-device-width: 700px) {
-          html { zoom: 0.5; }
-        }
         .fraunces { font-family: 'Fraunces', serif; }
         .fade-up { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
         .fade-up.visible { opacity: 1; transform: none; }

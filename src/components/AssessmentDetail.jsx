@@ -37,6 +37,8 @@ export default function AssessmentDetail({ assessmentKey, url, onClose }) {
   return (
     <>
       <style>{`
+        .mobile-layout .lc-detail-overlay { justify-content: flex-start !important; align-items: flex-start !important; width: 100vw !important; max-width: 100vw !important; padding: 0 !important; }
+        .mobile-layout .lc-detail-card { width: calc(100vw - 24px) !important; max-width: 480px !important; margin: 0 !important; }
         @keyframes detailOverlayIn { from { opacity: 0; } to { opacity: 1; } }
         @keyframes detailCardIn {
           from { opacity: 0; transform: translateY(24px) scale(0.96); }
