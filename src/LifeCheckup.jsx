@@ -16,7 +16,7 @@ const URLS = {
   memberArea: "https://member.paketsekolahkehidupan.com",
   // TODO: Replace with actual Simulator Kehidupan URL when available
   simulator: "https://simulatorkehidupan.lovable.app/",
-  ruangJeda: "https://sk-play-cinematic-home--yuliaparamithay.replit.app",
+  millionaire: "https://millionaire-school.lovable.app/",
   back:   "https://member.paketsekolahkehidupan.com",
 };
 
@@ -121,7 +121,9 @@ export default function LifeCheckup() {
           .lc-hero { padding-top: 80px !important; }
           .lc-next-journey-card { padding: 36px 22px !important; }
           .lc-next-journey-headline { font-size: 22px !important; }
-          .lc-ruang-jeda-card { padding: 36px 22px !important; }
+          .lc-millionaire-card { padding: 28px 18px !important; }
+          .lc-millionaire-poster { border-radius: 16px !important; }
+          .lc-millionaire-cta { width: 100% !important; min-height: 52px !important; }
         }
       `}</style>
 
@@ -298,83 +300,95 @@ export default function LifeCheckup() {
           </div>
         </section>
 
-        {/* RUANG JEDA */}
+        {/* LIFE MILLIONAIRE */}
         <section className="fade-up" style={{
           textAlign: "center",
           padding: "0 24px 80px",
         }}>
-          <div className="lc-ruang-jeda-card" style={{
+          <div className="lc-millionaire-card" style={{
             maxWidth: 520,
             margin: "0 auto",
             padding: "44px 36px",
             borderRadius: 24,
-            background: "linear-gradient(180deg, rgba(26,34,53,0.5) 0%, rgba(20,28,45,0.3) 100%)",
-            border: "1px solid rgba(200,169,110,0.15)",
-            boxShadow: "0 16px 50px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)",
+            background: "linear-gradient(180deg, rgba(26,34,53,0.6) 0%, rgba(20,28,45,0.35) 100%)",
+            border: "1px solid rgba(200,169,110,0.18)",
+            boxShadow: "0 16px 50px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.05)",
             backdropFilter: "blur(10px)",
           }}>
-            {/* Divider */}
-            <div style={{ width: 36, height: 1, background: "linear-gradient(90deg,transparent,#C8A96E,transparent)", margin: "0 auto 24px" }}/>
-
-            {/* Eyebrow */}
             <div style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              background: "rgba(200,169,110,0.08)", border: "1px solid rgba(200,169,110,0.18)",
-              borderRadius: 100, padding: "5px 14px", fontSize: 10, fontWeight: 700,
+              display: "inline-flex", alignItems: "center",
+              background: "rgba(200,169,110,0.08)", border: "1px solid rgba(200,169,110,0.2)",
+              borderRadius: 100, padding: "6px 16px", fontSize: 10, fontWeight: 700,
               letterSpacing: ".1em", color: "var(--gold)", textTransform: "uppercase", marginBottom: 20,
             }}>
-              <span style={{ fontSize: 13 }}>🌿</span>
-              Ruang Jeda
+              Bonus Game
             </div>
 
-            {/* Headline */}
             <h2 className="fraunces" style={{
-              fontSize: "clamp(20px,4vw,30px)",
+              fontSize: "clamp(24px,5vw,36px)",
               fontWeight: 300,
-              lineHeight: 1.25,
-              letterSpacing: "-.02em",
+              lineHeight: 1.15,
+              letterSpacing: ".04em",
               color: "var(--text)",
-              marginBottom: 14,
+              marginBottom: 10,
             }}>
-              Sudah cukup mengevaluasi hari ini.
-              <br/>
-              <em style={{ fontStyle: "italic", color: "var(--gold)" }}>Sekarang, ambil jeda.</em>
+              LIFE MILLIONAIRE
             </h2>
 
-            {/* Description */}
             <p style={{
               fontSize: "clamp(13px,2vw,15px)",
               color: "var(--muted)",
-              maxWidth: 380,
-              margin: "0 auto 28px",
-              lineHeight: 1.7,
+              margin: "0 auto 26px",
+              lineHeight: 1.6,
             }}>
-              Tidak semua perjalanan harus terus dipikirkan. Kadang kita hanya perlu berhenti sebentar, bermain, lalu melanjutkan langkah.
+              Seberapa jauh pengetahuanmu membawamu?
             </p>
 
-            {/* CTA */}
+            <div
+              className="lc-millionaire-poster"
+              style={{
+                display: "block",
+                width: "100%",
+                borderRadius: 18,
+                overflow: "hidden",
+                boxShadow: "0 16px 36px rgba(0,0,0,0.35), 0 0 24px rgba(200,169,110,0.1)",
+                transition: "transform 0.25s ease, box-shadow 0.25s ease",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = "scale(1.015)"; e.currentTarget.style.boxShadow = "0 20px 42px rgba(0,0,0,0.42), 0 0 30px rgba(200,169,110,0.2)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "0 16px 36px rgba(0,0,0,0.35), 0 0 24px rgba(200,169,110,0.1)"; }}
+            >
+              <img
+                src="/WhatsApp_Image_2026-10-07_at_09.29.43.jpeg"
+                alt="Poster Life Millionaire"
+                style={{ display: "block", width: "100%", height: "auto" }}
+              />
+            </div>
+
             <a
-              href={URLS.ruangJeda}
+              href={URLS.millionaire}
               target="_blank"
               rel="noopener noreferrer"
+              className="lc-millionaire-cta"
               style={{
                 display: "inline-flex",
                 alignItems: "center",
+                justifyContent: "center",
                 gap: 8,
-                padding: "14px 32px",
+                marginTop: 26,
+                padding: "15px 34px",
                 borderRadius: 100,
                 fontWeight: 700,
-                fontSize: 14,
+                fontSize: 15,
                 textDecoration: "none",
                 background: "var(--gold)",
                 color: "#0A1628",
                 boxShadow: "0 8px 24px rgba(200,169,110,0.25)",
                 transition: "transform 0.2s ease, box-shadow 0.2s ease",
               }}
-              onMouseEnter={e => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(200,169,110,0.35)"; }}
-              onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(200,169,110,0.25)"; }}
+              onMouseEnter={(e) => { e.currentTarget.style.transform = "translateY(-2px)"; e.currentTarget.style.boxShadow = "0 12px 32px rgba(200,169,110,0.35)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(200,169,110,0.25)"; }}
             >
-              Masuk Ruang Jeda →
+              Main Sekarang →
             </a>
           </div>
         </section>
