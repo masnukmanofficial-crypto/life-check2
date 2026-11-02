@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import LifeCheckupCarousel from "./components/LifeCheckupCarousel.jsx";
 import CinematicBackground from "./components/CinematicBackground.jsx";
-import MoodCheckup from "./components/MoodCheckup.jsx";
-import AssessmentDetail from "./components/AssessmentDetail.jsx";
 import MessageForMyself from "./components/MessageForMyself.jsx";
 
 // ⭐ EDIT URL DI SINI
@@ -13,18 +11,13 @@ const URLS = {
   doi:    "https://cekdoi-dulu.netlify.app/",
   dia:    "https://cekdia-dulu.netlify.app/",
   doski:  "https://cekdoski-dulu.netlify.app/",
-  memberArea: "https://member.paketsekolahkehidupan.com",
   // TODO: Replace with actual Simulator Kehidupan URL when available
   simulator: "https://simulatorkehidupan.lovable.app/",
   millionaire: "https://millionaire-school.lovable.app/",
-  back:   "https://member.paketsekolahkehidupan.com",
 };
 
 export default function LifeCheckup() {
   const canvasRef = useRef(null);
-  const [moodOpen, setMoodOpen] = useState(false);
-  const [focusKey, setFocusKey] = useState(null);
-  const [detailItem, setDetailItem] = useState(null);
   const [msgOpen, setMsgOpen] = useState(false);
 
   // Enhanced gold particles — drifting upward like embers / glowing dust
@@ -110,14 +103,6 @@ export default function LifeCheckup() {
 
         /* Mobile-friendly responsive adjustments */
         @media (max-width: 480px) {
-          .lc-back-btn {
-            font-size: 11px !important;
-            padding: 7px 12px !important;
-            max-width: calc(100vw - 40px);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-          }
           .lc-hero { padding-top: 80px !important; }
           .lc-next-journey-card { padding: 36px 22px !important; }
           .lc-next-journey-headline { font-size: 22px !important; }
@@ -133,17 +118,6 @@ export default function LifeCheckup() {
       <canvas ref={canvasRef} style={{ position: "fixed", inset: 0, zIndex: 1, pointerEvents: "none" }} />
 
       <div style={{ position: "relative", zIndex: 2, minHeight: "100vh" }}>
-
-        {/* BACK BUTTON */}
-        <a href={URLS.back} className="lc-back-btn" style={{
-          position: "fixed", top: 20, left: 20, zIndex: 99,
-          display: "inline-flex", alignItems: "center", gap: 6,
-          padding: "8px 16px", borderRadius: 100,
-          border: "1px solid rgba(200,169,110,0.3)",
-          color: "var(--gold)", fontSize: 13, fontWeight: 600,
-          textDecoration: "none", background: "rgba(10,22,40,0.85)",
-          backdropFilter: "blur(8px)",
-        }}>← Beranda Sekolah Kehidupan</a>
 
         {/* HERO */}
         <section className="fade-up lc-hero" style={{ textAlign: "center", padding: "100px 24px 56px", position: "relative", overflow: "hidden" }}>
@@ -173,37 +147,11 @@ export default function LifeCheckup() {
           <p style={{ fontSize: "clamp(14px,2vw,17px)", color: "var(--muted)", maxWidth: 420, margin: "0 auto", lineHeight: 1.7 }}>
             Seperti medical check-up — tapi yang diperiksa adalah hidupmu. Pilih area kehidupan yang ingin kamu evaluasi.
           </p>
-
-          {/* Mood Check-In trigger — optional, does not affect existing flow */}
-          <div style={{ marginTop: 28 }}>
-            <button
-              onClick={() => setMoodOpen(true)}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "10px 22px",
-                borderRadius: 100,
-                fontSize: 13,
-                fontWeight: 600,
-                cursor: "pointer",
-                color: "var(--gold)",
-                background: "rgba(200,169,110,0.08)",
-                border: "1px solid rgba(200,169,110,0.25)",
-                transition: "all 0.2s ease",
-              }}
-              onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(200,169,110,0.15)"; e.currentTarget.style.transform = "translateY(-1px)"; }}
-              onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(200,169,110,0.08)"; e.currentTarget.style.transform = "none"; }}
-            >
-              <span style={{ fontSize: 16 }}>🪞</span>
-              Cek Ekspresi Dulu?
-            </button>
-          </div>
         </section>
 
         {/* CAROUSEL — 3D Coverflow */}
         <div className="fade-up" style={{ paddingBottom: 0 }}>
-          <LifeCheckupCarousel focusKey={focusKey} onCardOpen={setDetailItem} />
+          <LifeCheckupCarousel onCardOpen={(item) => { if (item.url) window.open(item.url, "_blank", "noopener,noreferrer"); }} />
         </div>
 
         {/* NEXT JOURNEY */}
@@ -277,24 +225,6 @@ export default function LifeCheckup() {
                 onMouseLeave={e => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "0 8px 24px rgba(200,169,110,0.25)"; }}
               >
                 Jelajahi Simulator Kehidupan →
-              </a>
-              <a href={URLS.memberArea} style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-                padding: "12px 24px",
-                borderRadius: 100,
-                fontWeight: 500,
-                fontSize: 13,
-                textDecoration: "none",
-                color: "var(--muted)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                transition: "all 0.2s ease",
-              }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(200,169,110,0.3)"; e.currentTarget.style.color = "var(--gold)"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.1)"; e.currentTarget.style.color = "var(--muted)"; }}
-              >
-                ← Kembali ke Beranda Member
               </a>
             </div>
           </div>
@@ -472,26 +402,6 @@ export default function LifeCheckup() {
         </section>
 
       </div>
-
-      {/* Mood Check-In modal — optional welcome experience */}
-      {moodOpen && (
-        <MoodCheckup
-          onClose={() => setMoodOpen(false)}
-          onPick={(key) => {
-            setFocusKey(key);
-            setMoodOpen(false);
-          }}
-        />
-      )}
-
-      {/* Assessment detail modal */}
-      {detailItem && (
-        <AssessmentDetail
-          assessmentKey={detailItem.key}
-          url={detailItem.url}
-          onClose={() => setDetailItem(null)}
-        />
-      )}
 
       {/* Message for myself overlay */}
       {msgOpen && (
